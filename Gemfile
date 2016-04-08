@@ -4,6 +4,7 @@ ruby "2.2.2"
 # gem 'haml'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
+gem 'bootstrap-sass',       '3.2.0.0'
 gem 'bcrypt',               '3.1.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
