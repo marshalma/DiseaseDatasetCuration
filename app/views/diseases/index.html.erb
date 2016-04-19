@@ -1,10 +1,221 @@
-<h1>Diseases#index</h1>
+<!-- <h1>Diseases#index</h1>
 <p>Find me in app/views/diseases/index.html.erb</p>
-
-<div>
+ -->
+<!-- <div>
 <h4>Import data</h4>
 	<%= form_tag diseases_import_path, multipart: true do %>
 		<%= file_field_tag :file %>
 		<%= submit_tag "Import CSV" %>
 	<% end %>
+</div> -->
+<% provide(:title, 'Main Page') %>
+<h1>Main Page</h1>
+<!-- <div>
+<%= @ass %>
+</div> -->
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<h3>Disease</h3>
+        </div>
+        <div class="col-xs-3">
+        	<h3>DataSet</h3>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<h3>Relevant?</h3>
+        </div>
+        <div class="col-xs-3">
+        	<h3>Reason</h3>
+        </div>
+      </div>
 </div>
+
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<center><%= @dis.pop %></center>
+        </div>
+        <div class="col-xs-3">
+        	<center><%= @ass.pop %></center>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<div class="checkbox">
+        		<center>
+  				<label><input type="checkbox" value="">Yes</label>
+  				<label><input type="checkbox" value="">No</label>
+  				</center>
+			</div>
+        </div>
+        <div class="col-xs-3">
+			<center><div class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  				<span class="caret"></span></button>
+  				<ul class="dropdown-menu">
+    				<li><a href="#">HTML</a></li>
+    				<li><a href="#">CSS</a></li>
+    				<li><a href="#">JavaScript</a></li>
+  				</ul>
+			</div></center>
+        </div>
+      </div>
+</div>
+
+
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<center><%= @dis.pop %></center>
+        </div>
+        <div class="col-xs-3">
+        	<center><%= @ass.pop %></center>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<div class="checkbox">
+        		<center>
+  				<label><input type="checkbox" value="">Yes</label>
+  				<label><input type="checkbox" value="">No</label>
+  				</center>
+			</div>
+        </div>
+        <div class="col-xs-3">
+			<center><div class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  				<span class="caret"></span></button>
+  				<ul class="dropdown-menu">
+    				<li><a href="#">HTML</a></li>
+    				<li><a href="#">CSS</a></li>
+    				<li><a href="#">JavaScript</a></li>
+  				</ul>
+			</div></center>
+        </div>
+      </div>
+</div>
+
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<center><%= @dis.pop %></center>
+        </div>
+        <div class="col-xs-3">
+        	<center><%= @ass.pop %></center>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<div class="checkbox">
+        		<center>
+  				<label><input type="checkbox" value="">Yes</label>
+  				<label><input type="checkbox" value="">No</label>
+  				</center>
+			</div>
+        </div>
+        <div class="col-xs-3">
+			<center><div class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  				<span class="caret"></span></button>
+  				<ul class="dropdown-menu">
+    				<li><a href="#">HTML</a></li>
+    				<li><a href="#">CSS</a></li>
+    				<li><a href="#">JavaScript</a></li>
+  				</ul>
+			</div></center>
+        </div>
+      </div>
+</div>
+
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<center><%= @dis.pop %></center>
+        </div>
+        <div class="col-xs-3">
+        	<center><%= @ass.pop %></center>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<div class="checkbox">
+        		<center>
+  				<label><input type="checkbox" value="">Yes</label>
+  				<label><input type="checkbox" value="">No</label>
+  				</center>
+			</div>
+        </div>
+        <div class="col-xs-3">
+			<center><div class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  				<span class="caret"></span></button>
+  				<ul class="dropdown-menu">
+    				<li><a href="#">HTML</a></li>
+    				<li><a href="#">CSS</a></li>
+    				<li><a href="#">JavaScript</a></li>
+  				</ul>
+			</div></center>
+        </div>
+      </div>
+</div>
+<div id="main-container" class="container">
+      <div class="row">
+        <!-- <div id="sidebar" class="col-xs-3">
+        	<%= @dis %>
+        </div> -->
+        <div class="col-xs-3">
+        	<center><%= @dis.pop %></center>
+        </div>
+        <div class="col-xs-3">
+        	<center><%= @ass.pop %></center>
+        </div>
+        <div>
+        <div class="col-xs-3">
+        	<div class="checkbox">
+        		<center>
+  				<label><input type="checkbox" value="">Yes</label>
+  				<label><input type="checkbox" value="">No</label>
+  				</center>
+			</div>
+        </div>
+        <div class="col-xs-3">
+			<center><div class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  				<span class="caret"></span></button>
+  				<ul class="dropdown-menu">
+    				<li><a href="#">HTML</a></li>
+    				<li><a href="#">CSS</a></li>
+    				<li><a href="#">JavaScript</a></li>
+  				</ul>
+			</div></center>
+        </div>
+      </div>
+</div>
+
+
+        
+        
+       
+
+
+
+	<!-- <div id="header">
+	    <h3> Questionaire</h3>
+	    <p id="sub">My submissions </p>
+	    <p id="logout">Logout</p>
+	</div> -->
+</body>
+
+
