@@ -13,209 +13,47 @@
 <!-- <div>
 <%= @ass %>
 </div> -->
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<h3>Disease</h3>
-        </div>
-        <div class="col-xs-3">
-        	<h3>DataSet</h3>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<h3>Relevant?</h3>
-        </div>
-        <div class="col-xs-3">
-        	<h3>Reason</h3>
-        </div>
-      </div>
+<div class='row'>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <table class='table table-hover'>
+        <thead>
+          <tr>
+            <th>Disease</th>
+            <th>DataSet</th>
+            <th>Relevant?</th>
+            <th>Reason</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dis.each do |dis| %>
+            <tr>
+              <td><%= dis.disease %></td>
+              <td><%= dis.accession %></td>
+              <td>
+              	<div class="checkbox">
+  					<label><input type="checkbox" value="">Yes</label>
+  					<label><input type="checkbox" value="">No</label>
+				</div>
+              </td>
+              <td>
+              	<div class="dropdown">
+  					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Concrete Reason
+  					<span class="caret"></span></button>
+  					<ul class="dropdown-menu">
+    					<li><a href="#">One</a></li>
+    					<li><a href="#">Two</a></li>
+    					<li><a href="#">Three</a></li>
+  					</ul>
+				</div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
 </div>
-
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<center><%= @dis.pop %></center>
-        </div>
-        <div class="col-xs-3">
-        	<center><%= @ass.pop %></center>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<div class="checkbox">
-        		<center>
-  				<label><input type="checkbox" value="">Yes</label>
-  				<label><input type="checkbox" value="">No</label>
-  				</center>
-			</div>
-        </div>
-        <div class="col-xs-3">
-			<center><div class="dropdown">
-  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  				<span class="caret"></span></button>
-  				<ul class="dropdown-menu">
-    				<li><a href="#">HTML</a></li>
-    				<li><a href="#">CSS</a></li>
-    				<li><a href="#">JavaScript</a></li>
-  				</ul>
-			</div></center>
-        </div>
-      </div>
-</div>
-
-
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<center><%= @dis.pop %></center>
-        </div>
-        <div class="col-xs-3">
-        	<center><%= @ass.pop %></center>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<div class="checkbox">
-        		<center>
-  				<label><input type="checkbox" value="">Yes</label>
-  				<label><input type="checkbox" value="">No</label>
-  				</center>
-			</div>
-        </div>
-        <div class="col-xs-3">
-			<center><div class="dropdown">
-  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  				<span class="caret"></span></button>
-  				<ul class="dropdown-menu">
-    				<li><a href="#">HTML</a></li>
-    				<li><a href="#">CSS</a></li>
-    				<li><a href="#">JavaScript</a></li>
-  				</ul>
-			</div></center>
-        </div>
-      </div>
-</div>
-
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<center><%= @dis.pop %></center>
-        </div>
-        <div class="col-xs-3">
-        	<center><%= @ass.pop %></center>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<div class="checkbox">
-        		<center>
-  				<label><input type="checkbox" value="">Yes</label>
-  				<label><input type="checkbox" value="">No</label>
-  				</center>
-			</div>
-        </div>
-        <div class="col-xs-3">
-			<center><div class="dropdown">
-  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  				<span class="caret"></span></button>
-  				<ul class="dropdown-menu">
-    				<li><a href="#">HTML</a></li>
-    				<li><a href="#">CSS</a></li>
-    				<li><a href="#">JavaScript</a></li>
-  				</ul>
-			</div></center>
-        </div>
-      </div>
-</div>
-
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<center><%= @dis.pop %></center>
-        </div>
-        <div class="col-xs-3">
-        	<center><%= @ass.pop %></center>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<div class="checkbox">
-        		<center>
-  				<label><input type="checkbox" value="">Yes</label>
-  				<label><input type="checkbox" value="">No</label>
-  				</center>
-			</div>
-        </div>
-        <div class="col-xs-3">
-			<center><div class="dropdown">
-  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  				<span class="caret"></span></button>
-  				<ul class="dropdown-menu">
-    				<li><a href="#">HTML</a></li>
-    				<li><a href="#">CSS</a></li>
-    				<li><a href="#">JavaScript</a></li>
-  				</ul>
-			</div></center>
-        </div>
-      </div>
-</div>
-<div id="main-container" class="container">
-      <div class="row">
-        <!-- <div id="sidebar" class="col-xs-3">
-        	<%= @dis %>
-        </div> -->
-        <div class="col-xs-3">
-        	<center><%= @dis.pop %></center>
-        </div>
-        <div class="col-xs-3">
-        	<center><%= @ass.pop %></center>
-        </div>
-        <div>
-        <div class="col-xs-3">
-        	<div class="checkbox">
-        		<center>
-  				<label><input type="checkbox" value="">Yes</label>
-  				<label><input type="checkbox" value="">No</label>
-  				</center>
-			</div>
-        </div>
-        <div class="col-xs-3">
-			<center><div class="dropdown">
-  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  				<span class="caret"></span></button>
-  				<ul class="dropdown-menu">
-    				<li><a href="#">HTML</a></li>
-    				<li><a href="#">CSS</a></li>
-    				<li><a href="#">JavaScript</a></li>
-  				</ul>
-			</div></center>
-        </div>
-      </div>
-</div>
-
-
-        
-        
-       
-
-
-
-	<!-- <div id="header">
-	    <h3> Questionaire</h3>
-	    <p id="sub">My submissions </p>
-	    <p id="logout">Logout</p>
-	</div> -->
 </body>
 
 

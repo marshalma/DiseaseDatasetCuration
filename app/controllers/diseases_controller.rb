@@ -5,13 +5,11 @@ class DiseasesController < ApplicationController
    $num = 5
    #r = Random.new
    @dis = []
-   @ass = []
 
    while $i < $num do
    	#r.rand(1...19732)
    	arr = Disease.find(rand(1...19732))
-   	@dis.push(arr.disease)
-   	@ass.push(arr.accession)
+   	@dis.push(arr)
    	$i += 1
    end
    
