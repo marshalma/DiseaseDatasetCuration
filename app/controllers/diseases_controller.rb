@@ -9,10 +9,11 @@ class DiseasesController < ApplicationController
    while $i < $num do
    	#r.rand(1...19732)
    	arr = Disease.find(rand(1...19732))
+    
    	@dis.push(arr)
    	$i += 1
    end
-   
+
   end
 
   def import
