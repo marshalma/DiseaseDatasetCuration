@@ -18,5 +18,4 @@ puts csv
 
 _user = User.find_by_id(1)
 _disease = Disease.find_by_id(10)
-byebug
 Submission.create(disease_id:_disease.id, user_id:_user.id, is_related:true);
