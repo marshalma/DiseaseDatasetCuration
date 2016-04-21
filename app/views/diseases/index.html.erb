@@ -27,15 +27,14 @@
           </tr>
         </thead>
         <tbody>
+         <%= form_tag diseases_import_path(:yes => @yes, :no => @no), :method => :post do%>
           <% @dis.each do |dis| %>
             <tr>
               <td><%= dis.disease %></td>
               <td><%= dis.accession %></td>
               <td>
-              	<div class="checkbox">
-  					<label><input type="checkbox" value="">Yes</label>
-  					<label><input type="checkbox" value="">No</label>
-				</div>
+				<label><%= check_box_tag "yes[#{dis.disease}]" %>Yes</label>
+				<label><%= check_box_tag "no[#{dis.disease}]" %>No</label>
               </td>
               <td>
               	<div class="dropdown">
@@ -53,6 +52,8 @@
         </tbody>
       </table>
   </div>
+  <%= submit_tag 'Refresh'%>
+  <% end %>
 </div>
 </body>
 
