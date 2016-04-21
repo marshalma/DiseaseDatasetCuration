@@ -1,7 +1,5 @@
 class DiseasesController < ApplicationController
 
-require 'pry'
-
 @@dis = []
 
   def index
@@ -26,7 +24,7 @@ require 'pry'
     no = params[:no]
     @dis = @@dis
     @arr = []
-    
+
     yes.keys.each do |key_yes|
     	$i = 0
     	while $i < @dis.size do
@@ -38,8 +36,8 @@ require 'pry'
     		$i += 1
     	end
     end
-    
+
 	Answer.insert(@arr)
-    
+
   end
 end
