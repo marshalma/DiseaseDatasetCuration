@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Submission.create(disease_id:1, user_id:1, is_related:true);
-
 require 'csv'
 
 csv = CSV.read(Rails.root.join('lib', 'seeds', 'whole_rare_disease_list_result.csv'), { :col_sep => "\t"})
@@ -15,4 +13,10 @@ csv.each do |row|
     arr = ["disease",row[0],"accession",row[1]]
     Disease.create!(Hash[*arr])
 end
-# puts csv
+puts csv
+
+
+_user = User.find_by_id(1)
+_disease = Disease.find_by_id(10)
+byebug
+Submission.create(disease_id:_disease.id, user_id:_user.id, is_related:true);
