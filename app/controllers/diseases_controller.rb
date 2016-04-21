@@ -12,6 +12,7 @@ require 'pry'
 
    while $i < $num do
    	arr = Disease.find(rand(1...19732))
+    
    	@dis.push(arr)
    	$i += 1
    end
