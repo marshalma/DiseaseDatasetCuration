@@ -15,6 +15,7 @@ csv.each do |row|
 end
 puts csv
 
+User.create(email:"mashuo93@gmail.com", name:"mashuo", password:"19930521", password_confirmation:"19930521");
 
 _user = User.find_by_id(1)
 _disease = Disease.find_by_id(10)
