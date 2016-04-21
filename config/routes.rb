@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Diseases
   get 'diseases/index'
   get 'diseases/import'
+
   resources :diseases do
     collection { post :import}
   end

@@ -1,23 +1,45 @@
 class DiseasesController < ApplicationController
+
+require 'pry'
+
+@@dis = []
+
   def index
    #@diseases = Disease.all
    $i = 0
    $num = 5
-   #r = Random.new
-   @dis = []
+   @dis = @@dis
 
    while $i < $num do
-   	#r.rand(1...19732)
    	arr = Disease.find(rand(1...19732))
-    
    	@dis.push(arr)
    	$i += 1
    end
 
+   while @dis.length > 5 do
+   	@dis.shift
+   end
   end
 
   def import
-    Disease.import(params[:file])
-    redirect_to root_url, notice: "Activity Data Imported"
+    yes = params[:yes]
+    no = params[:no]
+    @dis = @@dis
+    @arr = []
+    
+    yes.keys.each do |key_yes|
+    	$i = 0
+    	while $i < @dis.size do
+    		if (key_yes == @dis.at($i).disease)
+    			@arr.push(@dis.at($i).id)
+    			@arr.push(yes[key_yes])
+    		end
+
+    		$i += 1
+    	end
+    end
+    
+	Answer.insert(@arr)
+    
   end
 end
