@@ -1,4 +1,6 @@
 class Disease < ActiveRecord::Base
+  has_many :submissions
+
   require "csv"
 
   def self.import(file)

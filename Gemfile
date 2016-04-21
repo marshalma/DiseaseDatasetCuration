@@ -3,6 +3,7 @@ ruby "2.2.2"
 # Use HAML
 # gem 'haml'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'will_paginate',           '3.0.7'
 gem 'rails'
 gem 'bootstrap-sass',       '3.2.0.0'
 gem 'bcrypt',               '3.1.7'
