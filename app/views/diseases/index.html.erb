@@ -7,12 +7,12 @@
 		<%= file_field_tag :file %>
 		<%= submit_tag "Import CSV" %>
 	<% end %>
+  
+  
+        
 </div> -->
 <% provide(:title, 'Main Page') %>
 <h1>Main Page</h1>
-<!-- <div>
-<%= @ass %>
-</div> -->
 <div class='row'>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <table class='table table-hover'>
@@ -27,25 +27,17 @@
           </tr>
         </thead>
         <tbody>
-         <%= form_tag diseases_import_path(:yes => @yes, :no => @no), :method => :post do%>
+         <%= form_tag diseases_import_path(:choose => @choose, :reason => @reason), :method => :post do%>
           <% @dis.each do |dis| %>
             <tr>
               <td><%= dis.disease %></td>
               <td><%= dis.accession %></td>
               <td>
-				<label><%= check_box_tag "yes[#{dis.disease}]" %>Yes</label>
-				<label><%= check_box_tag "no[#{dis.disease}]" %>No</label>
+              <label><%= radio_button_tag("choose[#{dis.disease}]", "1") %>Yes</label>
+              <label><%= radio_button_tag("choose[#{dis.disease}]", "0") %>No</label>
               </td>
               <td>
-              	<div class="dropdown">
-  					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Concrete Reason
-  					<span class="caret"></span></button>
-  					<ul class="dropdown-menu">
-    					<li><a href="#">One</a></li>
-    					<li><a href="#">Two</a></li>
-    					<li><a href="#">Three</a></li>
-  					</ul>
-				</div>
+              <%= select_tag "reason[#{dis.disease}]", options_for_select([ "VISA", "MasterCard" ]) %>
               </td>
             </tr>
           <% end %>

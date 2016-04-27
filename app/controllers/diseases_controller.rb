@@ -4,6 +4,7 @@ require 'pry'
 
 @@dis = []
 
+
   def index
    #@diseases = Disease.all
    $i = 0
@@ -22,22 +23,28 @@ require 'pry'
   end
 
   def import
-    yes = params[:yes]
-    no = params[:no]
+  	choose = params[:choose]
+  	reason = params[:reason]
+   
     @dis = @@dis
     @arr = []
     
-    yes.keys.each do |key_yes|
+    
+    choose.keys.each do |key_choose|
     	$i = 0
     	while $i < @dis.size do
-    		if (key_yes == @dis.at($i).disease)
-    			@arr.push(@dis.at($i).id)
-    			@arr.push(yes[key_yes])
+    		if (key_choose == @dis.at($i).disease)
+    			@arr << @dis.at($i).id
+    			@arr << @dis.at($i).id
+    			@arr << choose[key_choose]
+    			@arr << reason[key_choose]
     		end
 
     		$i += 1
     	end
     end
+
+    
     
 	Answer.insert(@arr)
     
