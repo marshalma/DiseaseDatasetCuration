@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
 
+  # Diseases
   get 'diseases/index'
   get 'diseases/import'
 
@@ -7,8 +9,7 @@ Rails.application.routes.draw do
     collection { post :import}
   end
 
-
-  root 'sessions#new'
+  # Users
   get 'signup'  => 'users#new'
   resources :users
 
@@ -16,4 +17,8 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
+  # Dummies
+  # get    'dummie'  => 'dummie#index'
+  # get    'good'   => 'dummie#fuck'
 end

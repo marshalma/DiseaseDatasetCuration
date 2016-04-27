@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420215846) do
-
-  create_table "answers", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "disease_id"
-    t.string   "answer"
-    t.string   "reason"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20160421035326) do
 
   create_table "diseases", force: :cascade do |t|
     t.string   "disease"
@@ -28,6 +19,18 @@ ActiveRecord::Schema.define(version: 20160420215846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "disease_id"
+    t.integer  "user_id"
+    t.boolean  "is_related"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "submissions", ["disease_id"], name: "index_submissions_on_disease_id"
+  add_index "submissions", ["user_id", "created_at"], name: "index_submissions_on_user_id_and_created_at"
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

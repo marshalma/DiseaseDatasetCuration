@@ -1,4 +1,8 @@
 class Disease < ActiveRecord::Base
+  has_many :submissions
+  has_many :users, :through => :submissions
+
+  require "csv"
   # require "csv"
 
   # def self.import(file)
@@ -8,7 +12,5 @@ class Disease < ActiveRecord::Base
   #     Disease.create!(Hash[*arr])
   #   end
   # end
-
-  
 
 end

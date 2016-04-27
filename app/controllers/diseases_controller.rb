@@ -1,7 +1,5 @@
 class DiseasesController < ApplicationController
 
-require 'pry'
-
 @@dis = []
 
 
@@ -28,9 +26,9 @@ require 'pry'
    
     @dis = @@dis
     @arr = []
-    
-    
+
     choose.keys.each do |key_choose|
+
     	$i = 0
     	while $i < @dis.size do
     		if (key_choose == @dis.at($i).disease)
@@ -44,9 +42,7 @@ require 'pry'
     	end
     end
 
-    
-    
-	Answer.insert(@arr)
-    
+	Submission.insert(@arr)
+
   end
 end
