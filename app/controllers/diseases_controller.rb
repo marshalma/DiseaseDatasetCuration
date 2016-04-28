@@ -47,7 +47,6 @@ class DiseasesController < ApplicationController
     	end
     end
 
-    binding.pry
 	Submission.insert(@arr)
 
   end

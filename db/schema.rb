@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421035326) do
+ActiveRecord::Schema.define(version: 20160428060109) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160421035326) do
     t.boolean  "is_related"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "reason"
   end
 
   add_index "submissions", ["disease_id"], name: "index_submissions_on_disease_id"
