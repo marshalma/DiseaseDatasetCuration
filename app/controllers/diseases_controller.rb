@@ -23,6 +23,7 @@ class DiseasesController < ApplicationController
   def import
   	choose = params[:choose]
   	reason = params[:reason]
+  	
    
     @dis = @@dis
     @arr = []
@@ -42,6 +43,7 @@ class DiseasesController < ApplicationController
     	end
     end
 
+    # binding.pry
 	Submission.insert(@arr)
 
   end
