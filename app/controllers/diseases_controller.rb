@@ -23,7 +23,10 @@ class DiseasesController < ApplicationController
   def import
   	choose = params[:choose]
   	reason = params[:reason]
-   
+    id = params[:session][:id]
+
+    binding.pry
+
     @dis = @@dis
     @arr = []
 
