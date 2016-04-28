@@ -33,11 +33,11 @@
               <td><%= dis.disease %></td>
               <td><%= dis.accession %></td>
               <td>
-              <label><%= radio_button_tag("choose[#{dis.disease}]", "1") %>Yes</label>
-              <label><%= radio_button_tag("choose[#{dis.disease}]", "0") %>No</label>
+              <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
+              <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
               </td>
               <td>
-              <%= select_tag "reason[#{dis.disease}]", options_for_select([ "VISA", "MasterCard" ]) %>
+              <%= select_tag "reason[#{dis.id}]", options_for_select([ "VISA", "MasterCard" ]) %>
               </td>
             </tr>
           <% end %>

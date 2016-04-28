@@ -5,6 +5,8 @@ class DiseasesController < ApplicationController
 
   def index
    #@diseases = Disease.all
+   #binding.pry
+
    $i = 0
    $num = 5
    @dis = @@dis
@@ -23,27 +25,29 @@ class DiseasesController < ApplicationController
   def import
   	choose = params[:choose]
   	reason = params[:reason]
-  	
-   
+  	$user_id = session[:user_id]
+
     @dis = @@dis
     @arr = []
 
     choose.keys.each do |key_choose|
 
     	$i = 0
+    	# binding.pry
     	while $i < @dis.size do
-    		if (key_choose == @dis.at($i).disease)
+    		if (key_choose == @dis.at($i).id.to_s)
     			@arr << @dis.at($i).id
-    			@arr << @dis.at($i).id
-    			@arr << choose[key_choose]
-    			@arr << reason[key_choose]
+    			@arr << $user_id
+    			@arr << choose_to_bool(choose[key_choose])
+    			@arr << reason_to_index(reason[key_choose])
+
     		end
 
     		$i += 1
     	end
     end
 
-    # binding.pry
+    binding.pry
 	Submission.insert(@arr)
 
   end
