@@ -5,7 +5,7 @@ class Submission < ActiveRecord::Base
   validates :user_id, presence: true
   validates :disease_id, presence: true
   validates :reason, presence: true
-  validates :is_related, presence: true
+  validates_inclusion_of :is_related, in: [true, false]
 
   def self.insert(arr)
   	while (arr.size >= 4) do
@@ -15,8 +15,7 @@ class Submission < ActiveRecord::Base
   		$reason = arr.shift
       byebug
   		arr_insert = ["disease_id", $dis_id, "user_id", $user_id, "is_related", $choose, "reason", $reason]
-  		Submission.new(Hash[*arr_insert])
+  		Submission.create!(Hash[*arr_insert])
   	end
-
   end
 end
