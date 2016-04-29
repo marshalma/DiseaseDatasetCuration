@@ -19,4 +19,4 @@ User.create(email:"mashuo93@gmail.com", name:"mashuo", password:"19930521", pass
 
 _user = User.find_by_id(1)
 _disease = Disease.find_by_id(10)
-Submission.create(disease_id:_disease.id, user_id:_user.id, is_related:true);
+Submission.create(disease_id:_disease.id, user_id:_user.id, is_related:true, reason:1);
