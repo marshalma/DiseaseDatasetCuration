@@ -1,18 +1,24 @@
 <% provide(:title, 'Profile') %>
 
-<h1><%= @user.name %>, <%= @user.email %></h1>
 
-<div class="btn-group">
-  <%= link_to "Start!",diseases_index_path,:class => "btn btn-success align-center" %>
-</div>
-
-<div class="col-md-8">
-  <% if @user.submissions.any? %>
-    <h3>Submissions (<%= @user.submissions.count %>)</h3>
-    <ol class="submissions">
-      <%= render @submissions %>
-    </ol>
-    <%= will_paginate @submissions %>
-  <% end %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.name %>
+        <!-- <%= @user.email %> -->
+        <%= link_to "START!", diseases_index_path, class: "btn btn-primary" %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.submissions.any? %>
+      <h3>Submissions (<%= @user.submissions.count %>)</h3>
+      <ol class="submissions">
+        <%= render @submissions %>
+      </ol>
+      <%= will_paginate @submissions %>
+    <% end %>
+  </div>
 </div>
 </div>
