@@ -31,13 +31,13 @@
           <% @dis.each do |dis| %>
             <tr>
               <td><%= dis.disease %></td>
-              <td><%= dis.accession %></td>
+              <td><%= link_to dis.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{dis.accession}/?query=#{dis.disease}" %></td>
               <td>
               <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
               <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
               </td>
               <td>
-              <%= select_tag "reason[#{dis.id}]", options_for_select([ "VISA", "MasterCard" ]) %>
+              <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro rna", "Biomarker", "Other" ]) %>
               </td>
             </tr>
           <% end %>
