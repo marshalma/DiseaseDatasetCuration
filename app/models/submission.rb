@@ -13,8 +13,9 @@ class Submission < ActiveRecord::Base
   		$user_id = arr.shift
   		$choose = arr.shift
   		$reason = arr.shift
+      byebug
   		arr_insert = ["disease_id", $dis_id, "user_id", $user_id, "is_related", $choose, "reason", $reason]
-  		Submission.create!(Hash[*arr_insert])
+  		Submission.new(Hash[*arr_insert])
   	end
 
   end
