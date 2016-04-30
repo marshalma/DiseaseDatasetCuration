@@ -19,7 +19,7 @@ class DiseasesController < ApplicationController
 
     if choose == nil
       flash[:warning] = "No answer given!"
-      redirect_to diseases_index_path
+      redirect_to '/diseases'
       return
     end
 
@@ -28,6 +28,6 @@ class DiseasesController < ApplicationController
     end
 
     flash[:success] = "Successfully submitted #{choose.keys.size} questions."
-    redirect_to diseases_index_path
+    redirect_to '/diseases'
   end
 end

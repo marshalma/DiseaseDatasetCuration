@@ -2,15 +2,15 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   # Diseases
-  get 'diseases/index'
-  get 'diseases/import'
-
-  resources :diseases do
-    collection { post :import}
-  end
+  get 'diseases' => 'diseases#index'
+  post 'diseases/import'
+  # resources :diseases do
+  #   collection {post :import}
+  # end
 
   # Users
   get 'signup'  => 'users#new'
+  get 'profile' => 'users#show'
   resources :users
 
   # Sessions
@@ -20,5 +20,4 @@ Rails.application.routes.draw do
 
   # Dummies
   # get    'dummie'  => 'dummie#index'
-  # get    'good'   => 'dummie#fuck'
 end

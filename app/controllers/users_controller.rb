@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @submissions = @user.submissions.paginate(page: params[:page])
     # debugger
   end
