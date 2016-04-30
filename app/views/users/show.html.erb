@@ -29,7 +29,7 @@
       <%= will_paginate @submissions %>
     <% else %>
       <h3>You don't have any submissions yet!</h3>
-      <h3>Click START button to begin</h3>
+      <h3>Click <%= link_to "Here", '/diseases'%> to begin</h3>
     <% end %>
   </div>
 </div>

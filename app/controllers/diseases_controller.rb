@@ -1,13 +1,10 @@
 class DiseasesController < ApplicationController
+  include DiseasesHelper
+
   def index
     # byebug
-    num_per_page = 5
-    @diseases_this_page = []
+    @diseases_this_page = get_questions
 
-    (0..num_per_page-1).each do
-    	arr = Disease.find(rand(1...Disease.count))
-     	@diseases_this_page << arr
-    end
   end
 
   def import
