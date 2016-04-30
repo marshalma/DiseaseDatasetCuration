@@ -13,11 +13,11 @@
       </div>
       <div class = "col-sm-8"><%= (submission.is_related)? "Related" : "Unrelated" %></div>
     </div>
-    <div class = "col-sm-6">
+    <div class = "col-sm-5">
       <div class = "col-sm-7"><%= "#{submission.disease.disease}"%></div>
       <div class = "col-sm-5"><%= link_to submission.disease.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{submission.disease.accession}/?query=#{submission.disease}", :target => '_blank'%></div>
     </div>
-    <div class = "col-sm-4">
+    <div class = "col-sm-5">
       <div class="timestamp">
         Submitted <%= time_ago_in_words(submission.created_at) %> ago.
       </div>

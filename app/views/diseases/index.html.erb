@@ -1,47 +1,30 @@
 <% provide(:title, 'Main Page') %>
 
 <h1> Questions </h1>
-
-<div class = "row">
-  <div class = "col-sm-1"> </div>
-  <div class = "col-sm-10">
+<div class="row">
+  <%= form_tag diseases_import_path(:dis => @diseases_this_page), :method => :post do%>
       <table class='table'>
         <thead>
           <tr>
-            <th>Disease</th>
-            <th>DataSet</th>
-            <th>Relevant?</th>
-            <th>Reason</th>
-            <th></th>
-            <th></th>
+            <th>Disease</th><th>DataSet</th><th>Relevant?</th><th>Reason</th>
           </tr>
         </thead>
         <tbody>
-          <%= form_tag diseases_import_path(:choose => @choose, :reason => @reason), :method => :post do%>
-            <% @dis.each do |dis| %>
-              <tr>
-                <td><%= dis.disease %></td>
-                <td><%= link_to dis.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{dis.accession}/?query=#{dis.disease}", :target => '_blank' %></td>
-                <td>
-                  <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
-                  <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
-                </td>
-                <td>
-                  <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro rna", "Biomarker", "Other" ]) %>
-                </td>
-              </tr>
-            <% end %>
+          <% @diseases_this_page.each do |dis| %>
+            <tr>
+              <td><%= dis.disease %></td>
+              <td><%= link_to dis.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{dis.accession}/?query=#{dis.disease}", :target => '_blank' %></td>
+              <td>
+                <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
+                <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
+              </td>
+              <td>
+                <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro rna", "Biomarker", "Other" ]) %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-  </div>
-  <div class = "col-sm-1"> </div>
-</div>
-
-<div class = "row">
-  <div class = "col-sm-4"> </div>
-  <div class = "col-sm-4">
-    <%= submit_tag 'Submit', :class => "btn btn-success align-center"%>
-  </div>
-  <div class = "col-sm-4"> </div>
+    <%= submit_tag 'Submit', :class => "btn btn-success button_wid"%>
+  <% end %>
 </div>
