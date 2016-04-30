@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   get 'profile' => 'users#show'
   resources :users
 
+  # Admin
+  get   'admin' => 'admins#show'
+  get   'config' => 'admins#configuration'
+  post  'config' => 'admins#update'
+
   # Sessions
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
