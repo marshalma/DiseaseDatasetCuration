@@ -1,8 +1,15 @@
 <li id="submission-<%= submission.id %>">
   <!-- <span class="user"><%= link_to submission.user.name, submission.user %></span> -->
-  <span class="disease"><%= "[#{submission.disease.disease}, #{submission.disease.accession}]" %></span>
-  <span class="is_related"><%= (submission.is_related)?"Yes":"No" %></span>
+  <% if submission.is_related %>
+    <div class="colorbox green"></div>
+  <% else %>
+    <div class="colorbox red"></div>
+  <% end %>
+
+
+  <span class="disease"><%= "#{submission.disease.disease}, #{submission.disease.accession}" %></span>
+  <span class="is_related"><%= (submission.is_related)? "Yes" : "No" %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(submission.created_at) %> ago.
+    Submitted <%= time_ago_in_words(submission.created_at) %> ago.
   </span>
 </li>

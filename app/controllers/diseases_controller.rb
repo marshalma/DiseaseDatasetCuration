@@ -4,7 +4,7 @@ class DiseasesController < ApplicationController
 
 
   def index
-    byebug
+    # byebug
    $i = 0
    $num = 5
    @dis = @@dis
