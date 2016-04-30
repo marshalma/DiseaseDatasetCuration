@@ -179,6 +179,7 @@ input {
     }
   }
   .timestamp {
+    float: right;
     color: $gray-light;
     display: block;
     margin-left: 60px;
@@ -186,8 +187,8 @@ input {
 
   .colorbox {
     float: left;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, .2);
   }
