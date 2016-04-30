@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Admin
   get   'admin' => 'admins#show'
   get   'config' => 'admins#configuration'
-  post  'config' => 'admins#update'
+  post  'config', to: 'admins#update', as: "config_update"
 
   # Sessions
   get    'login'   => 'sessions#new'
