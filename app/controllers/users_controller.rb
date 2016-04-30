@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   def show
+    if session[:user_id] == nil
+      flash[:warning] = "please login"
+      redirect_to '/login'
+      return
+    end
     @user = User.find(session[:user_id])
     @submissions = @user.submissions.paginate(page: params[:page])
     # debugger
