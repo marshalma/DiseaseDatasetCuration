@@ -50,7 +50,6 @@ class AdminsController < ApplicationController
       return
     end
 
-    byebug
     str = params[:num_per_page]
 
     if str.size == 0 || (str =~ /^[-+]?\d+$/) == nil
