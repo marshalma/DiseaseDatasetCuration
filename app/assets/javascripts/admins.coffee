@@ -7,3 +7,11 @@ $(document).ready ->
     $('#updateForm').submit()
     return
   return
+
+$('#query').on 'keypress', (e) ->
+  code = if e.keyCode then e.keyCode else e.which
+  if code == 13
+    e.preventDefault()
+    e.stopPropagation()
+    $(this).closest('#query_form').submit()
+  return

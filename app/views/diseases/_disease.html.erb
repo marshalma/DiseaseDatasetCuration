@@ -1,7 +1,7 @@
 <tr>
   <td><%= disease.id %></td>
   <td><%= disease.disease %></td>
-  <td><%= disease.accession %></td>
+  <td><%= link_to disease.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{disease.accession}/?query=#{disease.disease}", :target => '_blank' %></td>
   <td><%= disease.related %></td>
   <td><%= disease.unrelated %></td>
 </tr>
