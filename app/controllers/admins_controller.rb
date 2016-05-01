@@ -10,8 +10,13 @@ class AdminsController < ApplicationController
       return
     end
 
-    @diseases = Disease.paginate(page: params[:page])
+    @diseases = Disease.paginate(per_page: 15, page: params[:page])
 
+  end
+
+  def query
+    byebug
+    render 'admin/show'
   end
 
   def configuration
