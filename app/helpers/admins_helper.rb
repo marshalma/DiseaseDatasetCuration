@@ -15,6 +15,17 @@ module AdminsHelper
     data[:num_item_per_page.to_s] = new_value
     File.open(parameters_yaml_path, 'w') { |f| YAML.dump(data, f) }
   end
+  
+
+  def admin?
+    user = User.find_by_id(session[:user_id])
+    if !user || !user.admin?
+      flash[:warning] = "Permission denied!"
+      redirect_to root_path
+      return
+    end
+  end
+
 
   def find_conditional_diseases
     query = session[:search]

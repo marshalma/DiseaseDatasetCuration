@@ -1,14 +1,9 @@
 class AdminsController < ApplicationController
   include AdminsHelper
+  before_action :admin?
 
   def show
     # byebug
-    user = User.find_by_id(session[:user_id])
-    if !user || !user.admin?
-      flash[:warning] = "Permission denied!"
-      redirect_to root_path
-      return
-    end
 
     if !params.has_key?(:search) && !params.has_key?(:sort)
       session.delete(:search) if session.has_key? :search
@@ -20,7 +15,7 @@ class AdminsController < ApplicationController
     end
 
     if params.has_key? :sort
-      sort = params[:sort] # session[:sort] = ["id", true], where true => ascending while false => descending
+      sort = params[:sort] # session[:sort] = ["id", true], where true => descending while false => ascending
       if session.has_key?(:sort) && session[:sort][0] == sort
         session[:sort][1] = !session[:sort][1]
       else
@@ -39,10 +34,23 @@ class AdminsController < ApplicationController
 
 
   def configuration
+    user = User.find_by_id(session[:user_id])
+    if !user || !user.admin?
+      flash[:warning] = "Permission denied!"
+      redirect_to root_path
+      return
+    end
   end
 
   def update
-    #byebug
+    user = User.find_by_id(session[:user_id])
+    if !user || !user.admin?
+      flash[:warning] = "Permission denied!"
+      redirect_to root_path
+      return
+    end
+
+    byebug
     str = params[:num_per_page]
 
     if str.size == 0 || (str =~ /^[-+]?\d+$/) == nil
