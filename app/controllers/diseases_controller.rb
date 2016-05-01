@@ -27,4 +27,9 @@ class DiseasesController < ApplicationController
     flash[:success] = "Successfully submitted #{choose.keys.size} questions."
     redirect_to '/diseases'
   end
+
+  def temp
+    #Submission.uniq.pluck(:disease_id)
+    #rails generate migration add_related_to_diseases related:integer
+  end
 end

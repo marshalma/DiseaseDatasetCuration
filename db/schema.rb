@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428060109) do
+ActiveRecord::Schema.define(version: 20160501024842) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "disease_id"
+    t.string   "answer"
+    t.string   "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "diseases", force: :cascade do |t|
     t.string   "disease"
     t.string   "accession"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "related",    default: 0
+    t.integer  "unrelated",  default: 0
   end
 
   create_table "submissions", force: :cascade do |t|
