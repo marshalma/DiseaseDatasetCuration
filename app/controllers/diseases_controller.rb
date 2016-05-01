@@ -21,7 +21,16 @@ class DiseasesController < ApplicationController
     end
 
     choose.keys.each do |d_id|
-      Submission.create!({:disease_id => d_id, :user_id => user_id, :is_related => choose[d_id], :reason => reason[d_id]})
+      dis = Disease.find_by_id(d_id)
+      byebug
+      if choose_to_bool choose[d_id]
+        num = dis.related
+        dis.update!(related: num+1)
+      else  
+        num = dis.unrelated
+        dis.update!(unrelated: num+1)
+      end
+      Submission.create!({:disease_id => d_id, :user_id => user_id, :is_related => choose_to_bool(choose[d_id]), :reason => reason_to_index(reason[d_id])})
     end
 
     flash[:success] = "Successfully submitted #{choose.keys.size} questions."
