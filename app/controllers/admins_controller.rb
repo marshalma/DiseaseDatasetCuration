@@ -3,7 +3,6 @@ class AdminsController < ApplicationController
 
   def show
     # byebug
-
     user = User.find_by_id(session[:user_id])
     if !user || !user.admin?
       flash[:warning] = "Permission denied!"
@@ -11,25 +10,33 @@ class AdminsController < ApplicationController
       return
     end
 
-    query = params[:search]
-
-    if query == nil
-      @diseases = Disease.paginate(per_page: 15, page: params[:page])
-    elsif query == ""
-      flash[:warning] = "Invalid Query!"
-      redirect_to '/admin'
-      return
-    elsif (query =~ /^E-.*$/) != nil
-      @diseases = Disease.where(:accession => query).paginate(page: params[:page])
-    else ($query =~ /^\w+/) != nil
-      @diseases = Disease.where(:disease => query).paginate(page: params[:page])
+    if !params.has_key?(:search) && !params.has_key?(:sort)
+      session.delete(:search) if session.has_key? :search
+      session.delete(:sort) if session.has_key? :sort
     end
+
+    if params.has_key? :search
+      session[:search] = params[:search]
+    end
+
+    if params.has_key? :sort
+      sort = params[:sort] # session[:sort] = ["id", true], where true => ascending while false => descending
+      if session.has_key?(:sort) && session[:sort][0] == sort
+        session[:sort][1] = !session[:sort][1]
+      else
+        session[:sort] = [sort, false]
+      end
+    end
+
+    @diseases = find_conditional_diseases().paginate(per_page: 15, page: params[:page])
 
     if @diseases == nil
       flash[:warning] = "No Results!"
       redirect_to '/admin'
     end
   end
+
+
 
   def configuration
   end

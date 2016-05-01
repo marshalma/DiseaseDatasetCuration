@@ -16,4 +16,28 @@ module AdminsHelper
     File.open(parameters_yaml_path, 'w') { |f| YAML.dump(data, f) }
   end
 
+  def find_conditional_diseases
+    query = session[:search]
+    sort = session[:sort]
+
+    if !query.nil? && !sort.nil?
+      if (query =~ /^E-.*$/) != nil
+        @diseases = Disease.where(:accession => query).order(sort[0] => (sort[1]? :desc : :asc))
+      else (query =~ /^\w+/) != nil
+        @diseases = Disease.where(:disease => query).order(sort[0] => (sort[1]? :desc : :asc))
+      end
+    elsif !query.nil?
+      if (query =~ /^E-.*$/) != nil
+        @diseases = Disease.where(:accession => query)
+      else (query =~ /^\w+/) != nil
+        @diseases = Disease.where(:disease => query)
+      end
+    elsif !sort.nil?
+      @diseases = Disease.order(sort[0] => (sort[1]? :desc : :asc))
+    else
+      @diseases = Disease.all
+    end
+
+  end
+
 end
