@@ -22,11 +22,11 @@ class DiseasesController < ApplicationController
 
     choose.keys.each do |d_id|
       dis = Disease.find_by_id(d_id)
-      byebug
+      # byebug
       if choose_to_bool choose[d_id]
         num = dis.related
         dis.update!(related: num+1)
-      else  
+      else
         num = dis.unrelated
         dis.update!(unrelated: num+1)
       end
