@@ -13,10 +13,11 @@ csv.each do |row|
     arr = ["disease",row[0],"accession",row[1]]
     Disease.create!(Hash[*arr])
 end
-puts csv
+puts csv.to_s
 
-User.create(email:"mashuo93@gmail.com", name:"mashuo", password:"19930521", password_confirmation:"19930521");
+User.create!(name: "666", email: "666@gmail.com", password: "foobar", password_confirmation: "foobar", admin: true)
+User.create!(name: "mashuo", email: "mashuo93@gmail.com", password: "19930521", password_confirmation: "19930521", admin: true)
 
-_user = User.find_by_id(1)
+_user = User.find_by_name("mashuo")
 _disease = Disease.find_by_id(10)
 Submission.create(disease_id:_disease.id, user_id:_user.id, is_related:true, reason:1);
