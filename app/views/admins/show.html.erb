@@ -1,6 +1,12 @@
 <div class = "row">
   <div class = "col-sm-3">
-    <h1>Admin</h1>
+    <h1>Search</h1>
+    <div class = row>
+      <%= form_tag admins_show_path(), :method => :post do%>
+      <%= text_field_tag 'query', 'Enter your search query here' %>
+      <%= submit_tag 'Submit', :class => "btn btn-success button_wid"%>
+    <% end %>
+</div>
   </div>
   <div class = "col-sm-9">
       <h1>Diseases (<%= @diseases.count %>)</h1>
@@ -11,8 +17,6 @@
   </div>
 </div>
 
-<div class = row>
-</div>
 
 <div class = "row">
   <div class = "col-sm-10"> </div>
