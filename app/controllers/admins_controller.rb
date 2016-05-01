@@ -54,7 +54,7 @@ class AdminsController < ApplicationController
 
     old_value = get_num_per_page
     set_num_per_page(new_value)
-    flash[:success] = "Number of items per page successfully switched from #{old_value} to #{new_value}"
+    flash[:success] = "Number of entries per page successfully switched from #{old_value} to #{new_value}"
     redirect_to '/config'
   end
 end
