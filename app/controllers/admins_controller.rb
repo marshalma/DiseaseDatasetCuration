@@ -2,7 +2,6 @@ class AdminsController < ApplicationController
   include AdminsHelper
 
   def show
-    # byebug
     user = User.find_by_id(session[:user_id])
     if !user || !user.admin?
       flash[:warning] = "Permission denied!"
@@ -11,19 +10,25 @@ class AdminsController < ApplicationController
     end
 
     @diseases = Disease.paginate(per_page: 15, page: params[:page])
+    $query = params[:query]
+    if $query == ""
+      flash[:warning] = "enter nothing!"
+      # redirect_to admins_show_path
+      # return
+    end
 
-  end
-
-  def query
-    byebug
-    render 'admin/show'
+    if ($query =~ /^E-.*$/) != nil
+      @diseases = Disease.where(:accession => $query).paginate(page: params[:page])
+    elsif ($query =~ /^\w+/) != nil
+      @diseases = Disease.where(:disease => $query).paginate(page: params[:page])
+    end
   end
 
   def configuration
   end
 
   def update
-    byebug
+    #byebug
     str = params[:num_per_page]
 
     if str.size == 0 || (str =~ /^[-+]?\d+$/) == nil

@@ -6,28 +6,15 @@
 <div class = "row">
 
   <div class = "col-sm-4">
-    <div class = "row">
-      <ul class="list-group">
-        <li class="list-group-item text-right"><span class="pull-left">
-          <strong>Number of rows each page:</strong></span>
-          <%=get_num_per_page%>
-        </li>
-        <li class="list-group-item text-right">
-          <span class="pull-left"><strong>Change to:</strong></span>
-          <%= form_tag admin_query_path, :method => :post, :id => 'updateForm' do%>
-            <%= text_field_tag(:num_per_page) %>
-            <!-- <%= submit_tag 'Submit', :class => "btn btn-success button_wid"%> -->
-          <% end %>
-        </li>
-      </ul>
-    </div>
-    <div class = "row">
-        <button id="submitBtn" class="btn btn-primary">Submit</button>
+    <h1>Search</h1>
+    <div class = row>
+      <%= form_tag admins_show_path(), :method => :post do%>
+      <%= text_field_tag 'query', 'Enter your search query here' %>
+      <%= submit_tag 'Submit', :class => "btn btn-success button_wid"%>
+      <% end %>
     </div>
   </div>
-
   <div class = "col-sm-8">
-      <!-- <h1>Diseases (<%= @diseases.count %>)</h1> -->
       <div class="table-responsive">
         <table class = "table">
           <thead>
@@ -44,7 +31,6 @@
           </tbody>
         </table>
       </div>
-
   </div>
 </div>
 
