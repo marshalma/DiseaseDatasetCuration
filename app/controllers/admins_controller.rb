@@ -24,7 +24,7 @@ class AdminsController < ApplicationController
       if session.has_key?(:sort) && session[:sort][0] == sort
         session[:sort][1] = !session[:sort][1]
       else
-        session[:sort] = [sort, false]
+        session[:sort] = [sort, true]
       end
     end
 
