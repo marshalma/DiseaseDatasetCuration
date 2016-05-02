@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#submitBtn').on 'click', ->
+  $('#submitBtn').click ->
     $('#updateForm').submit()
     return
 
