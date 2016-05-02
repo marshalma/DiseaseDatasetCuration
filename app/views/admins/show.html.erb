@@ -40,7 +40,9 @@
             </tr>
           </thead>
           <tbody>
-            <%= render @diseases %>
+            <% if !@diseases.nil? %>
+              <%= render @diseases %>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -50,7 +52,9 @@
 
 <div class = "row">
   <div class = "col-sm-10">
-    <%= will_paginate @diseases %>
+    <% if !@diseases.nil? %>
+      <%= will_paginate @diseases %>
+    <% end %>
   </div>
   <div class = "col-sm-2">
     <div class = "row">

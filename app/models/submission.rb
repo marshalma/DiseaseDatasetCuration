@@ -24,7 +24,6 @@ class Submission < ActiveRecord::Base
       disease.update!(unrelated: num+1)
     end
 
-    byebug
     Submission.create!(new_entry)
     data = YAML.load_file parameters_yaml_path
     closing_threshold = data["closing_threshold"]

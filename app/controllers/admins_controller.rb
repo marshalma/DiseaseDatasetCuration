@@ -4,39 +4,32 @@ class AdminsController < ApplicationController
 
   def show
     # byebug
-    if !params.has_key?(:search) && !params.has_key?(:sort)
-      session.delete(:search) if session.has_key? :search
-      session.delete(:sort) if session.has_key? :sort
-    end
 
-    if params.has_key? :search
-      session[:search] = params[:search]
-    end
+    update_session(:page, :search, :sort)
 
-    if params.has_key? :sort
-      sort = params[:sort] # session[:sort] = ["id", true], where true => descending while false => ascending
-      if session.has_key?(:sort) && session[:sort][0] == sort
-        session[:sort][1] = !session[:sort][1]
-      else
-        session[:sort] = [sort, true]
-      end
-    end
-
-    @diseases = find_conditional_diseases().paginate(per_page: 15, page: params[:page])
+    @diseases = find_conditional_diseases
+    # byebug
 
     if @diseases == nil
       flash[:warning] = "No Results!"
-      redirect_to '/admin'
+    else
+      # byebug
+      @diseases = @diseases.paginate(per_page: 15, page: params[:page])
     end
   end
 
+
   def allusers
-    if params.has_key? :sort
-      @users = User.all.order(params[:sort] => :desc).paginate(per_page: 15, page: params[:page])
-    elsif params.has_key? :search
-      @users = User.all.where(email: params[:search]).paginate(per_page: 15, page: params[:page])
+    update_session(:page, :query, :order)
+
+    @users = find_conditional_users
+    # byebug
+
+    if @users == nil
+      flash[:warning] = "No Results!"
     else
-      @users = User.all.paginate(per_page: 15, page: params[:page])
+      # byebug
+      @users = @users.paginate(per_page: 15, page: params[:page])
     end
   end
 
@@ -49,6 +42,7 @@ class AdminsController < ApplicationController
     end
   end
 
+
   def histogram
     @dis_id = params[:sort]
     @arr = []
@@ -57,6 +51,7 @@ class AdminsController < ApplicationController
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
   end
+
 
   def update
     user = User.find_by_id(session[:user_id])
