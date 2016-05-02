@@ -9,7 +9,7 @@ module DiseasesHelper
     diseases = []
 
     while diseases.size < num_per_page
-      byebug
+      # byebug
       rand_num = rand(1..Disease.count)
       disease = Disease.find_by_id(rand_num)
       next if disease.closed == true
