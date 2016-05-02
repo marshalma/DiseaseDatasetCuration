@@ -9,7 +9,17 @@
     <%= link_to "Configuration", '/config'%>
   </div>
 
-  <div class = "col-sm-8">
+  <div class = "col-sm-6">
+
+  </div>
+
+  <div class = "col-sm-1">
+    <div class = "row">
+      <%= link_to "Show User", "/admin/allusers", :class => "btn btn-primary center-block" %>
+    </div>
+  </div>
+
+  <div class = "col-sm-1">
 
   </div>
 
@@ -26,7 +36,7 @@
 <div class = "row">
   <div class = "col-sm-12">
       <div class="table-responsive">
-        <table class = "table">
+        <table id="dvData" class = "table">
           <thead>
             <tr>
               <th class = "col-md-1"><%= link_to "ID", admins_show_path(:sort => "id") %></th>
@@ -48,13 +58,22 @@
       </div>
   </div>
 </div>
+<p>link_to  </p>
+
 
 
 <div class = "row">
-  <div class = "col-sm-10">
+  <div class = "col-sm-6">
     <% if !@diseases.nil? %>
       <%= will_paginate @diseases %>
     <% end %>
+  </div>
+  <div class = "col-sm-2">
+    <div class = "row">
+      <%= link_to "Download as csv/tsv", "/admin/getcsv", :class => "btn btn-primary center-block" %>
+    </div>
+  </div>
+  <div class = "col-sm-2">
   </div>
   <div class = "col-sm-2">
     <div class = "row">

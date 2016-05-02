@@ -25,7 +25,7 @@ module AdminsHelper
 
 
   def find_conditional_diseases
-    query = session[:query]
+    query = session[:search]
     sort = session[:sort]
 
     if !query.nil?

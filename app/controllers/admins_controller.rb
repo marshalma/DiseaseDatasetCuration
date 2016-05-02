@@ -19,6 +19,7 @@ class AdminsController < ApplicationController
   end
 
 
+
   def allusers
     update_session(:page, :query, :order)
 
@@ -33,6 +34,7 @@ class AdminsController < ApplicationController
     end
   end
 
+
   def configuration
     user = User.find_by_id(session[:user_id])
     if !user || !user.admin?
@@ -46,14 +48,23 @@ class AdminsController < ApplicationController
   def histogram
     @dis_id = params[:sort]
     @arr = []
-
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
   end
 
 
-  def update
+  def getcsv
+    @dis = Disease.where(:closed => true)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @dis.to_csv }
+      format.tsv { send_data @dis.to_csv(col_sep: "\t") }
+    end
+  end
+
+
+  def config_update
     user = User.find_by_id(session[:user_id])
     if !user || !user.admin?
       flash[:warning] = "Permission denied!"

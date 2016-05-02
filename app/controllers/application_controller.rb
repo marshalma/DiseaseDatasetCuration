@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_session(page, search, sort)
+    # byebug
     if !params.has_key?(page)
       if !params.has_key?(search) && !params.has_key?(sort)
         session.delete(search) if session.has_key? search
