@@ -4,7 +4,6 @@ class AdminsController < ApplicationController
 
   def show
     # byebug
-
     if !params.has_key?(:search) && !params.has_key?(:sort)
       session.delete(:search) if session.has_key? :search
       session.delete(:sort) if session.has_key? :sort

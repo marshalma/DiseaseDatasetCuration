@@ -32,7 +32,7 @@
               <th class = "col-md-1"><%= link_to "ID", admins_show_path(:sort => "id") %></th>
               <th class = "col-md-4">Disease</th>
               <th class = "col-md-4">Accession</th>
-              <th class = "col-md-1">Submission#</th>
+              <th class = "col-md-1"><%= link_to "Submission#", admins_show_path(:sort => "submission") %></th>
               <th class = "col-md-1"><%= link_to "Related#", admins_show_path(:sort => "related") %></th>
               <th class = "col-md-1"><%= link_to "Unrelated#", admins_show_path(:sort => "unrelated") %></th>
             </tr>
