@@ -12,7 +12,6 @@ end
 # Users
 User.create!(name: "666", email: "666@gmail.com", password: "foobar", password_confirmation: "foobar", admin: true)
 (0..100).each {|i| User.create!(name: "mashuo#{i}", email: "mashuo#{i}@gmail.com", password: "19930521", password_confirmation: "19930521", admin: false)}
->>>>>>> e70e69aafc29c54308b6a5458f6fe4a23d7bb849
 
 
 # Submissions
