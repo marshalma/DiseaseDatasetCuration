@@ -6,7 +6,10 @@
       <table class='table'>
         <thead>
           <tr>
-            <th>Disease</th><th>DataSet</th><th>Relevant?</th><th>Reason</th>
+            <th class = "col-md-3">Disease</th>
+            <th class = "col-md-3">DataSet</th>
+            <th class = "col-md-3">Relevant?</th>
+            <th class = "col-md-3">Reason</th>
           </tr>
         </thead>
         <tbody>
@@ -17,6 +20,7 @@
               <td>
                 <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
                 <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
+                <label><%= link_to "clear", "#", class: 'btn btn-default', id: "#{dis.id}"%></label>
               </td>
               <td>
                 <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro rna", "Biomarker", "Other" ]) %>
