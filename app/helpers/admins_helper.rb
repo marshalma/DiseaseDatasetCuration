@@ -28,25 +28,50 @@ module AdminsHelper
     query = session[:search]
     sort = session[:sort]
 
-    if !query.nil? && !sort.nil?
-      sort_criteria = (sort[0] == "submission" ? 'related + unrelated DESC' : {sort[0] => (sort[1]? :desc : :asc)})
+    if !query.nil?
       if (query =~ /^E-.*$/) != nil
-        @diseases = Disease.where(:accession => query).order(sort_criteria)
+        diseases = Disease.where(:accession => query)
       else (query =~ /^\w+/) != nil
-        @diseases = Disease.where(:disease => query).order(sort_criteria)
+        diseases = Disease.where(:disease => query)
       end
-    elsif !query.nil?
-      if (query =~ /^E-.*$/) != nil
-        @diseases = Disease.where(:accession => query)
-      else (query =~ /^\w+/) != nil
-        @diseases = Disease.where(:disease => query)
-      end
-    elsif !sort.nil?
-      @disease = sort[0] == "submission" ? Disease.order('related + unrelated DESC') : Disease.order(sort[0] => (sort[1]? :desc : :asc))
     else
-      @diseases = Disease.all
+      diseases = Disease.all
     end
 
+    if !sort.nil?
+      sort_criteria = (sort[0] == "submission" ? 'related + unrelated DESC' : {sort[0] => (sort[1] ? :desc : :asc)})
+      diseases = diseases.order(sort_criteria)
+    end
+
+    return diseases
+  end
+
+
+  def find_conditional_users
+    query = session[:query]
+    order = session[:order]
+
+    if !query.nil?
+      users = User.where(email: query)
+    else
+      users = User.all
+    end
+
+    return users if order.nil?
+
+    which_way = order[1] ? " DESC" : " ASC"
+    case order[0]
+    when "sub"
+      users = users.joins(:submissions).group("users.id").order("count(users.id)" + which_way)
+    when "closed_sub"
+      users = users.joins(:submissions).joins("LEFT JOIN 'diseases' on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).group("users.id").order("count(users.id)" + which_way)
+    when "correct"
+      users = users.joins(:submissions).joins("LEFT JOIN 'diseases' on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').group("users.id").order("count(users.id)" + which_way)
+    when "accuracy"
+      users = users.joins(:submissions).joins("LEFT JOIN 'diseases' on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').group("users.id").order("count(users.id)" + which_way)
+    end
+
+    return users
   end
 
 end

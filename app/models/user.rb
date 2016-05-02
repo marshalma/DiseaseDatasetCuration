@@ -42,28 +42,30 @@ class User < ActiveRecord::Base
   end
 
   def num_closed_submissions
-    submissions = self.submissions.to_a
-    num = 0
-    submissions.each do |submission|
-      num += Disease.find_by_id(submission.disease_id).closed == true ? 1 : 0
-    end
-    return num
+    # submissions = self.submissions.to_a
+    # num = 0
+    # submissions.each do |submission|
+    #   num += Disease.find_by_id(submission.disease_id).closed == true ? 1 : 0
+    # end
+    # return num
+    self.submissions.joins(:disease).where('diseases.closed =?', true).count
   end
 
   def num_correct
-    closed_submissions = []
-    submissions = self.submissions.to_a
-    num = 0
-    submissions.each do |submission|
-      disease = Disease.find_by_id(submission.disease_id)
-      closed_submissions << submission if disease.closed == true
-    end
-    correct = 0
-    closed_submissions.each do |submission|
-      disease = Disease.find_by_id(submission.disease_id)
-      correct += (submission.is_related == (disease.related > disease.unrelated)) ? 1 : 0
-    end
-    return correct
+    # closed_submissions = []
+    # submissions = self.submissions.to_a
+    # num = 0
+    # submissions.each do |submission|
+    #   disease = Disease.find_by_id(submission.disease_id)
+    #   closed_submissions << submission if disease.closed == true
+    # end
+    # correct = 0
+    # closed_submissions.each do |submission|
+    #   disease = Disease.find_by_id(submission.disease_id)
+    #   correct += (submission.is_related == (disease.related > disease.unrelated)) ? 1 : 0
+    # end
+    # return correct
+    self.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
   end
 
 end
