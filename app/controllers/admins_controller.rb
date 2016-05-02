@@ -4,7 +4,6 @@ class AdminsController < ApplicationController
 
   def show
     # byebug
-
     if !params.has_key?(:search) && !params.has_key?(:sort)
       session.delete(:search) if session.has_key? :search
       session.delete(:sort) if session.has_key? :sort
@@ -31,7 +30,15 @@ class AdminsController < ApplicationController
     end
   end
 
+  def allusers
+    if params.has_key? :sort
+      @users = User.all.paginate
+    elsif params.has_key? :query
+    else
+      @users = User.all.paginate(per_page: 15, page: params[:page])
 
+    end
+  end
 
   def configuration
     user = User.find_by_id(session[:user_id])
@@ -49,7 +56,7 @@ class AdminsController < ApplicationController
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
-    
+
   end
 
   def get_csv
