@@ -40,4 +40,30 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  def num_closed_submissions
+    submissions = self.submissions.to_a
+    num = 0
+    submissions.each do |submission|
+      num += Disease.find_by_id(submission.disease_id).closed == true ? 1 : 0
+    end
+    return num
+  end
+
+  def num_correct
+    closed_submissions = []
+    submissions = self.submissions.to_a
+    num = 0
+    submissions.each do |submission|
+      disease = Disease.find_by_id(submission.disease_id)
+      closed_submissions << submission if disease.closed == true
+    end
+    correct = 0
+    closed_submissions.each do |submission|
+      disease = Disease.find_by_id(submission.disease_id)
+      correct += (submission.is_related == (disease.related > disease.unrelated)) ? 1 : 0
+    end
+    return correct
+  end
+
 end

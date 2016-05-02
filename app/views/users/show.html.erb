@@ -11,18 +11,12 @@
         <li class="list-group-item text-right"><span class="pull-left"><strong>Submissions</strong></span> <%= (@user.submissions.any?)?@user.submissions.count():0%></li>
       </ul>
 
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
-          <div class = "row">
-            <%= link_to "START!", '/diseases', class: "btn btn-primary center-block" %>
-          </div>
-          <div class = "row">
-            <% if current_user.admin? %>
-              <%= link_to "Admin", '/admin', class: "btn btn-success center-block" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-sm-3"></div>
+
+      <%= link_to "START!", '/diseases', class: "btn btn-primary center-block" %>
+      <% if current_user.admin? %>
+        <%= link_to "Admin", '/admin', class: "btn btn-success center-block" %>
+        <%= link_to "All Users", '/admin/allusers', class: "btn btn-info center-block" %>
+      <% end %>
 
     </section>
   </div>

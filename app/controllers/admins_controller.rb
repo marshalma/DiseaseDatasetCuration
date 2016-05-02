@@ -30,7 +30,15 @@ class AdminsController < ApplicationController
     end
   end
 
+  def allusers
+    if params.has_key? :sort
+      @users = User.all.paginate
+    elsif params.has_key? :query
+    else
+      @users = User.all.paginate(per_page: 15, page: params[:page])
 
+    end
+  end
 
   def configuration
     user = User.find_by_id(session[:user_id])
@@ -48,10 +56,6 @@ class AdminsController < ApplicationController
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
-    # byebug
-    # data = [0,1,2,2,2,2,2,3,3,3,3,3,3,3,3,3,5,5,9,9,10]
-    # by default, uses Scott's method to calculate optimal number of bins
-    # and the bin values are midpoints between the bin edges
   end
 
   def update
