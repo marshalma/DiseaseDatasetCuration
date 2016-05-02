@@ -1,9 +1,6 @@
 module AdminsHelper
+  include ApplicationHelper
   require 'yaml'
-
-  def parameters_yaml_path
-    return "./config/parameters.yml"
-  end
 
   def get_num_per_page
     data = YAML.load_file parameters_yaml_path

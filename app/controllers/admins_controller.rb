@@ -32,11 +32,11 @@ class AdminsController < ApplicationController
 
   def allusers
     if params.has_key? :sort
-      @users = User.all.paginate
-    elsif params.has_key? :query
+      @users = User.all.order(params[:sort] => :desc).paginate(per_page: 15, page: params[:page])
+    elsif params.has_key? :search
+      @users = User.all.where(email: params[:search]).paginate(per_page: 15, page: params[:page])
     else
       @users = User.all.paginate(per_page: 15, page: params[:page])
-
     end
   end
 
