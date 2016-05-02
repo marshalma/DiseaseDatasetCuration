@@ -3,15 +3,24 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#submitBtn').on 'click', ->
+  $('#submitBtn').click ->
     $('#updateForm').submit()
     return
-  return
 
-$('#query').on 'keypress', (e) ->
-  code = if e.keyCode then e.keyCode else e.which
-  if code == 13
-    e.preventDefault()
-    e.stopPropagation()
-    $(this).closest('#query_form').submit()
-  return
+
+  $('#query').on 'keypress', (e) ->
+    code = if e.keyCode then e.keyCode else e.which
+    if code == 13
+      e.preventDefault()
+      e.stopPropagation()
+      $(this).closest('#query_form').submit()
+      return
+
+  # clear radio button
+  $('.btn').click ->
+    id = this.id
+    $('#choose_' + id + '_1').prop 'checked', false
+    $('#choose_' + id + '_0').prop 'checked', false
+    return
+
+return
