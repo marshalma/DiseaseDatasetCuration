@@ -5,4 +5,5 @@
   <td><%= disease.related + disease.unrelated %></td>
   <td><%= disease.related %></td>
   <td><%= disease.unrelated %></td>
+  <td><%= link_to "Histogram", admin_histogram_path(:sort => "#{disease.id}")%></td>
 </tr>
