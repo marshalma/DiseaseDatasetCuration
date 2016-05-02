@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get   'config' => 'admins#configuration'
   post  'config', to: 'admins#update', as: "config_update"
   get   'admin/histogram' => 'admins#histogram'
+  
 
   # Sessions
   get    'login'   => 'sessions#new'

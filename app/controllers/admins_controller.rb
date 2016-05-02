@@ -49,12 +49,14 @@ class AdminsController < ApplicationController
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
-    # byebug
-    # data = [0,1,2,2,2,2,2,3,3,3,3,3,3,3,3,3,5,5,9,9,10]
-    # by default, uses Scott's method to calculate optimal number of bins
-    # and the bin values are midpoints between the bin edges
+    
   end
 
+  def get_csv
+    
+
+  end
+  
   def update
     user = User.find_by_id(session[:user_id])
     if !user || !user.admin?
