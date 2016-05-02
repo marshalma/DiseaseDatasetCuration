@@ -59,8 +59,14 @@ class AdminsController < ApplicationController
 
   end
 
-  def get_csv
-    
+  def getcsv
+
+    @dis = Disease.where(:closed => true)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @dis.to_csv }
+      format.tsv { send_data @dis.to_csv(col_sep: "\t") }
+    end
 
   end
   

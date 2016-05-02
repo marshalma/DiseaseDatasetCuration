@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get   'admin/allusers' => 'admins#allusers'
   post  'admin/allusers', to: 'admins#allusers', as: "admin_all"
-
+  get   'admin/getcsv' => 'admins#getcsv'
 
   # Sessions
   get    'login'   => 'sessions#new'

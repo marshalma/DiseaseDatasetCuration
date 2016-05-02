@@ -56,12 +56,20 @@
       </div>
   </div>
 </div>
+<p>link_to  </p>
 
 
 
 <div class = "row">
-  <div class = "col-sm-10">
+  <div class = "col-sm-6">
     <%= will_paginate @diseases %>
+  </div>
+  <div class = "col-sm-2">
+    <div class = "row">
+      <%= link_to "Download as csv/tsv", "/admin/getcsv", :class => "btn btn-primary center-block" %>
+    </div>
+  </div>
+  <div class = "col-sm-2">
   </div>
   <div class = "col-sm-2">
     <div class = "row">
