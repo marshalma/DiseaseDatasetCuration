@@ -27,7 +27,7 @@
       <ol class="submissions">
         <%= render @submissions %>
       </ol>
-      <%= will_paginate @submissions %>
+      <%= will_paginate @submissions, renderer: BootstrapPagination::Rails %>
     <% else %>
       <h3>You don't have any submissions yet!</h3>
       <h3>Click <%= link_to "Here", '/diseases'%> to begin</h3>
