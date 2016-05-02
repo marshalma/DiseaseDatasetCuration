@@ -15,7 +15,7 @@
     </div>
     <div class = "col-sm-5">
       <div class = "col-sm-7"><%= "#{submission.disease.disease}"%></div>
-      <div class = "col-sm-5"><%= link_to submission.disease.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{submission.disease.accession}/?query=#{submission.disease}", :target => '_blank'%></div>
+      <div class = "col-sm-5"><%= link_to submission.disease.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{submission.disease.accession}/?query=#{submission.disease.disease}", :target => '_blank'%></div>
     </div>
     <div class = "col-sm-5">
       <div class="timestamp">
