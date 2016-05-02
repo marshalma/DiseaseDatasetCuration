@@ -9,8 +9,8 @@
 
   <div class = "col-sm-2">
     <div class = row>
-      <%= form_tag admin_all_path(), :method => :post, :id => "query_form" do%>
-      <%= search_field_tag 'search', nil, :class => 'special_input', :placeholder => 'Query...', :id => 'query' %>
+      <%= form_tag admin_all_path(), :method => :post, :id => "query_user_form" do%>
+      <%= search_field_tag 'search', nil, :class => 'special_input', :placeholder => 'Search Email...', :id => 'query_user' %>
       <% end %>
     </div>
   </div>
@@ -23,7 +23,7 @@
           <thead>
             <tr>
               <th class = "col-md-1"><%= link_to "ID", admin_all_path(:sort => "id") %></th>
-              <th class = "col-md-3">Email</th>
+              <th class = "col-md-4">Email</th>
               <th class = "col-md-3">Name</th>
               <th class = "col-md-1"><%= link_to "Submission#", admin_all_path(:sort => "sub") %></th>
               <th class = "col-md-1"><%= link_to "Close Submission#", admin_all_path(:sort => "closed_sub") %></th>

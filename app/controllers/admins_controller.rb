@@ -29,16 +29,18 @@ class AdminsController < ApplicationController
       redirect_to '/admin'
     end
   end
+  
 
   def allusers
     if params.has_key? :sort
-      @users = User.all.paginate
-    elsif params.has_key? :query
+      @users = User.all.order(params[:sort] => :desc).paginate(per_page: 15, page: params[:page])
+    elsif params.has_key? :search
+      @users = User.all.where(email: params[:search]).paginate(per_page: 15, page: params[:page])
     else
       @users = User.all.paginate(per_page: 15, page: params[:page])
-
     end
   end
+
 
   def configuration
     user = User.find_by_id(session[:user_id])
@@ -49,26 +51,25 @@ class AdminsController < ApplicationController
     end
   end
 
+
   def histogram
     @dis_id = params[:sort]
     @arr = []
-
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
-
   end
 
-  def getcsv
 
+  def getcsv
     @dis = Disease.where(:closed => true)
     respond_to do |format|
       format.html
       format.csv { send_data @dis.to_csv }
       format.tsv { send_data @dis.to_csv(col_sep: "\t") }
     end
-
   end
+
   
   def update
     user = User.find_by_id(session[:user_id])

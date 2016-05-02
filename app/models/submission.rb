@@ -1,4 +1,6 @@
 class Submission < ActiveRecord::Base
+  require 'yaml'
+
   belongs_to :disease
   belongs_to :user
 
@@ -9,22 +11,11 @@ class Submission < ActiveRecord::Base
   validates :reason, presence: true
   validates_inclusion_of :is_related, in: [true, false]
 
-  # def self.insert(arr)
-  # 	while (arr.size >= 4) do
-  # 		$dis_id = arr.shift
-  # 		$user_id = arr.shift
-  # 		$choose = arr.shift
-  # 		$reason = arr.shift
-  #     byebug
-  # 		arr_insert = ["disease_id", $dis_id, "user_id", $user_id, "is_related", $choose, "reason", $reason]
-  # 		Submission.create!(Hash[*arr_insert])
-  # 	end
-  # end
 
   def self.insert!(new_entry)
     # byebug
     disease = Disease.find_by_id(new_entry[:disease_id])
-    # byebug
+
     if new_entry[:is_related]
       num = disease.related
       disease.update!(related: num+1)
@@ -33,11 +24,19 @@ class Submission < ActiveRecord::Base
       disease.update!(unrelated: num+1)
     end
 
+    byebug
     Submission.create!(new_entry)
+    data = YAML.load_file parameters_yaml_path
+    closing_threshold = data["closing_threshold"]
+    dist_threshold = data["dist_threshold"]
 
     total = disease.related + disease.unrelated
-    if total >= 10 && ( disease.related.to_f / total.to_f >= 0.8 || disease.unrelated.to_f / total.to_f >= 0.8 )
+    if total >= closing_threshold && ( disease.related.to_f / total.to_f >= dist_threshold || disease.unrelated.to_f / total.to_f >= dist_threshold )
       disease.update!(closed: true)
     end
+  end
+
+  def self.parameters_yaml_path
+    return "./config/parameters.yml"
   end
 end

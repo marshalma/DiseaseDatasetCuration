@@ -16,6 +16,14 @@ $(document).on "page:change", ->
       $(this).closest('#query_form').submit()
       return
 
+  $('#query_user').on 'keypress', (e) ->
+    code = if e.keyCode then e.keyCode else e.which
+    if code == 13
+      e.preventDefault()
+      e.stopPropagation()
+      $(this).closest('#query_user_form').submit()
+      return
+
   # clear radio button
   $('.btn').click ->
     id = this.id
