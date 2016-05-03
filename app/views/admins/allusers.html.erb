@@ -28,7 +28,7 @@
               <th class = "col-md-1"><%= link_to "Submission#", admin_all_path(:order => "sub") %></th>
               <th class = "col-md-1"><%= link_to "Close Submission#", admin_all_path(:order => "closed_sub") %></th>
               <th class = "col-md-1"><%= link_to "Correct#", admin_all_path(:order => "correct") %></th>
-              <th class = "col-md-1"><%= link_to "Accuracy#", admin_all_path(:order => "accuracy") %></th>
+              <th class = "col-md-1"><% link_to "Accuracy#", admin_all_path(:order => "accuracy") %>Accuracy#</th>
             </tr>
           </thead>
           <tbody>
