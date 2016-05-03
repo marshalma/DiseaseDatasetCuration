@@ -1,6 +1,6 @@
 require 'csv'
 
-Diseases
+# Diseases
 csv = CSV.read(Rails.root.join('lib', 'seeds', 'whole_rare_disease_list_result.csv'), { :col_sep => "\t"})
 csv.each do |row|
     arr = ["disease",row[0],"accession",row[1]]
