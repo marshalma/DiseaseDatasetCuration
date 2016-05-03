@@ -68,14 +68,14 @@ module AdminsHelper
     when "correct"
       users = users.joins(:submissions).joins("LEFT JOIN 'diseases' on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').group("users.id").order("count(users.id)" + which_way)
     when "accuracy"
-      users =
-      users.sort do |a,b|
-        e1 = a.submissions.joins(:disease).where('diseases.closed =?', true).count
-        d1 = a.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
-        e2 = b.submissions.joins(:disease).where('diseases.closed =?', true).count
-        d2 = b.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
-        (d1 == 0 || d2 == 0) ? (0 <=> 0) : ((e1.to_f / d1.to_f) <=> (e2.to_f / d2.to_f))
-      end
+      # users =
+      # users.sort do |a,b|
+      #   e1 = a.submissions.joins(:disease).where('diseases.closed =?', true).count
+      #   d1 = a.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
+      #   e2 = b.submissions.joins(:disease).where('diseases.closed =?', true).count
+      #   d2 = b.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
+      #   (d1 == 0 || d2 == 0) ? (0 <=> 0) : ((e1.to_f / d1.to_f) <=> (e2.to_f / d2.to_f))
+      # end
     end
 
     return users
