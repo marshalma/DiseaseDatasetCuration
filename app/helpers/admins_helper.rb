@@ -38,10 +38,10 @@ module AdminsHelper
       diseases = Disease.all
     end
 
-    if !sort.nil?
-      sort_criteria = (sort[0] == "submission" ? 'related + unrelated DESC' : {sort[0] => (sort[1] ? :desc : :asc)})
-      diseases = diseases.order(sort_criteria)
-    end
+    return diseases if sort.nil?
+    which_way = sort[1] ? " DESC" : " ASC"
+    sort_criteria = (sort[0] == "submission" ? ('related + unrelated ' + which_way) : {sort[0] => (sort[1] ? :desc : :asc)})
+    diseases = diseases.order(sort_criteria)
 
     return diseases
   end
