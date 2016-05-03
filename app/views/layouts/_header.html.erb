@@ -3,7 +3,13 @@
     <%= link_to "Genetic Dataset Curation", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
+        <li>
+          <% if logged_in? %>
+            <%= link_to "Home", '/profile' %>
+          <% else %>
+            <%= link_to "Home", root_path %>
+          <% end %>
+        </li>
         <li><%= link_to "Help", root_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", '#' %></li>
