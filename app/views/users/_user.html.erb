@@ -5,4 +5,5 @@
   <td><%= user.submissions.count %></td>
   <td><%= user.num_closed_submissions %></td>
   <td><%= user.num_correct %></td>
+  <td><%= (user.num_correct.to_f / user.num_closed_submissions.to_f).round(3) %></td>
 </tr>
