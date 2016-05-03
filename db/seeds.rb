@@ -2,7 +2,7 @@ require 'csv'
 
 # Diseases
 csv = CSV.read(Rails.root.join('lib', 'seeds', 'whole_rare_disease_list_result.csv'), { :col_sep => "\t"})
-csv.each do |row|
+csv[0..1000].each do |row|
     arr = ["disease",row[0],"accession",row[1]]
     Disease.create!(Hash[*arr])
 end
@@ -15,7 +15,7 @@ User.create!(name: "666", email: "666@gmail.com", password: "foobar", password_c
 
 
 # Submissions
-(0..10000).each do |i|
+(0..5000).each do |i|
   puts i.to_s
   _user = User.find_by_id(rand(0..User.count-1))
   _disease = Disease.find_by_id(rand(0..100))
