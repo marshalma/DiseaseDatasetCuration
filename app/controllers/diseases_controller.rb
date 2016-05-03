@@ -5,10 +5,11 @@ class DiseasesController < ApplicationController
   def index
     # byebug
     if !logged_in?
-      flash[:warning] = "Please log in."
+      flash[:warning] = "Please Log in!"
       redirect_to root_path
       return
     end
+
     @diseases_this_page = Disease.get_questions
 
   end
