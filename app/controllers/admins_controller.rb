@@ -26,8 +26,8 @@ class AdminsController < ApplicationController
     @users = find_conditional_users
 
     # update user accuracy fields
-    @users.each do |user|
-      user.update_attribute(:accuracy, user.get_accuracy)
+    if !params.has_key?(:page) && !params.has_key?(:query) && !params.has_key?(:order)
+      @users.each { |user| user.update_attribute(:accuracy, user.get_accuracy) }
     end
     # byebug
 
