@@ -24,6 +24,11 @@ class AdminsController < ApplicationController
     update_session(:page, :query, :order)
 
     @users = find_conditional_users
+
+    # update user accuracy fields
+    @users.each do |user|
+      user.update_attribute(:accuracy, user.get_accuracy)
+    end
     # byebug
 
     if @users == nil

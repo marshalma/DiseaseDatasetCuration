@@ -70,7 +70,8 @@ module AdminsHelper
     when "correct"
       users = users.joins(:submissions).joins("LEFT JOIN diseases on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).where('diseases.closed =?', true).where('(submissions.is_related =? and diseases.related > diseases.unrelated) or (submissions.is_related =? and diseases.unrelated > diseases.related)', true, false).group("users.id").order("count(users.id)" + which_way)
     when "accuracy"
-      users = users.joins(:submissions).joins("LEFT JOIN diseases on diseases.id = submissions.disease_id").where("diseases.closed = ?", true).where('diseases.closed =?', true).where('(submissions.is_related =? and diseases.related > diseases.unrelated) or (submissions.is_related =? and diseases.unrelated > diseases.related)', true, false).group("users.id").order("count(users.id)" + which_way)
+      users = users.order("accuracy" + which_way)
+      # comment the upper statement if you find it too slow to fetch the all user page
     end
 
     return users

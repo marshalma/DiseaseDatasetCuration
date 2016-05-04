@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502010257) do
+ActiveRecord::Schema.define(version: 20160504040043) do
 
   create_table "diseases", force: :cascade do |t|
     t.string   "disease"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160502010257) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
+    t.float    "accuracy",        default: 0.0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
