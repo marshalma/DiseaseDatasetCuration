@@ -35,6 +35,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def admin?
+    current_user.admin == true
+  end
+
   def user_name
     return current_user.name if !current_user.nil?
   end
