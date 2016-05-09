@@ -41,31 +41,20 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
+
+  # related to user statistics
   def num_closed_submissions
-    # submissions = self.submissions.to_a
-    # num = 0
-    # submissions.each do |submission|
-    #   num += Disease.find_by_id(submission.disease_id).closed == true ? 1 : 0
-    # end
-    # return num
     self.submissions.joins(:disease).where('diseases.closed =?', true).count
   end
 
   def num_correct
-    # closed_submissions = []
-    # submissions = self.submissions.to_a
-    # num = 0
-    # submissions.each do |submission|
-    #   disease = Disease.find_by_id(submission.disease_id)
-    #   closed_submissions << submission if disease.closed == true
-    # end
-    # correct = 0
-    # closed_submissions.each do |submission|
-    #   disease = Disease.find_by_id(submission.disease_id)
-    #   correct += (submission.is_related == (disease.related > disease.unrelated)) ? 1 : 0
-    # end
-    # return correct
-    self.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related = "t" and diseases.related > diseases.unrelated) or (submissions.is_related = "f" and diseases.unrelated > diseases.related)').count
+    self.submissions.joins(:disease).where('diseases.closed =?', true).where('(submissions.is_related =? and diseases.related > diseases.unrelated) or (submissions.is_related =? and diseases.unrelated > diseases.related)', true, false).count
+  end
+
+  def get_accuracy
+    # byebug
+    return 0.0 if self.num_closed_submissions == 0
+    return self.num_correct.to_f / self.num_closed_submissions.to_f
   end
 
 end

@@ -3,17 +3,27 @@
     <%= link_to "Genetic Dataset Curation", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", root_path %></li>
+        <li>
+          <% if logged_in? %>
+            <%= link_to "Home", '/profile' %>
+          <% else %>
+            <%= link_to "Home", root_path %>
+          <% end %>
+        </li>
+        <li><%= link_to "Help", '#' %></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Hello, <%= user_name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", '/profile' %></li>
-              <li><%= link_to "Settings", '#' %></li>
+              <% if admin? %>
+                <li><%= link_to "Admin", '/admin' %></li>
+                <li><%= link_to "Users", '/admin/allusers' %></li>
+                <li><%= link_to "Configuration", '/config' %></li>
+              <% end %>
+
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
