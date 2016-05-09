@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'pg_histogram'
+
+gem "chartkick"
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug',      '3.4.0'

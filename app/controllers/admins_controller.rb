@@ -2,6 +2,7 @@ class AdminsController < ApplicationController
   include AdminsHelper
   before_action :admin?
 
+
   def show
     # byebug
 
@@ -51,6 +52,9 @@ class AdminsController < ApplicationController
     for i in 0..6
       @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
+
+    histogram = PgHistogram::Histogram.new(Submission.where("disease_id = '#{@dis_id}'"), 'reason', 1)
+    @histogram_data = histogram.results
   end
 
 
