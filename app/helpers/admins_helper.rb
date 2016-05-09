@@ -77,4 +77,24 @@ module AdminsHelper
     return users
   end
 
+  def index_to_reason(num)
+    case num
+    when 0
+      return "Comprehensive"
+    when 1
+      return "Irrelevant Study"
+    when 2
+      return "Not Enough Experiment"
+    when 3
+      return "No health Control"
+    when 4
+      return "Micro rna"
+    when 5
+      return "Biomarker"
+    when 6
+      return "other"
+    end
+
+  end
+
 end

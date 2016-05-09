@@ -52,14 +52,14 @@ class AdminsController < ApplicationController
 
 
   def histogram
+
     @dis_id = params[:sort]
-    @arr = []
+    @histogram_data = {}
+
     for i in 0..6
-      @arr << Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
+      @histogram_data[index_to_reason(i)] = Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
 
-    histogram = PgHistogram::Histogram.new(Submission.where("disease_id = '#{@dis_id}'"), 'reason', 1)
-    @histogram_data = histogram.results
   end
 
 
