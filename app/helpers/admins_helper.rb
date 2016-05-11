@@ -80,19 +80,21 @@ module AdminsHelper
   def index_to_reason(num)
     case num
     when 0
-      return "Comprehensive"
+      return "Related"
     when 1
-      return "Irrelevant Study"
+      return "Comprehensive"
     when 2
-      return "Not Enough Experiment"
+      return "Irrelevant Study"
     when 3
-      return "No health Control"
+      return "Not Enough Experiment"
     when 4
-      return "Micro rna"
+      return "No health Control"
     when 5
-      return "Biomarker"
+      return "Micro RNA"
     when 6
-      return "other"
+      return "Biomarker"
+    when 7
+      return "Others"
     end
 
   end

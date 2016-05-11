@@ -2,7 +2,7 @@
 
 <h1> Questions </h1>
 <div class="row">
-  <%= form_tag diseases_import_path(:dis => @diseases_this_page), :method => :post do%>
+  <%= form_tag diseases_import_path(:dis => @diseases_this_page), :method => :post, :id => "questions" do%>
       <table class='table'>
         <thead>
           <tr>
@@ -18,17 +18,17 @@
               <td><%= dis.disease %></td>
               <td><%= link_to dis.accession, "http://www.ebi.ac.uk/arrayexpress/experiments/#{dis.accession}/?query=#{dis.disease}", :target => '_blank' %></td>
               <td>
-                <label><%= radio_button_tag("choose[#{dis.id}]", "1") %>Yes</label>
-                <label><%= radio_button_tag("choose[#{dis.id}]", "0") %>No</label>
-                <label><%= link_to "clear", "#", class: 'btn btn-default', id: "#{dis.id}"%></label>
+                <label><%= radio_button_tag("choose[#{dis.id}]", "1", false, class: 'radio_input') %>Yes</label>
+                <label><%= radio_button_tag("choose[#{dis.id}]", "0", false, class: 'radio_input') %>No</label>
+                <label><%= link_to "clear", "#", class: 'btn btn-default btn_clear', id: "#{dis.id}"%></label>
               </td>
               <td>
-                <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro rna", "Biomarker", "Other" ]) %>
+                <%= select_tag "reason[#{dis.id}]", options_for_select([ "Comprehensive", "Irrelevant Study", "Not Enough Experiment", "No health Control", "Micro RNA", "Biomarker", "Others" ]), html_options = {disabled: true, include_blank: true}  %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-    <%= submit_tag 'Submit', :class => "btn btn-success button_wid"%>
+    <%= link_to 'Submit', "#", :class => "btn btn-success button_wid", :id => "submit"%>
   <% end %>
 </div>

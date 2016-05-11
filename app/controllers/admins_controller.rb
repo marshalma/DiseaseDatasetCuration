@@ -56,7 +56,7 @@ class AdminsController < ApplicationController
     @dis_id = params[:sort]
     @histogram_data = {}
 
-    for i in 0..6
+    for i in 0..7
       @histogram_data[index_to_reason(i)] = Submission.where("disease_id = '#{@dis_id}'").where("reason = #{i}").count
     end
 
