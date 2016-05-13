@@ -1,4 +1,4 @@
-/*
+/*123
  * Chartkick.js
  * Create beautiful JavaScript charts with minimal code
  * https://github.com/ankane/chartkick.js
