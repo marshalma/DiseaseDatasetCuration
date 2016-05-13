@@ -1,28 +1,28 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
 * Ruby version
+ruby 2.2.2p95 (2015-04-13 revision 50295)
+Rails 4.2.6
 
 * System dependencies
+No
 
 * Configuration
+No
 
 * Database creation
+Exec in bash "rake db:migrate"
 
 * Database initialization
+Exec in bash "rake db:seed" if you want to have some dummy data in the system
 
 * How to run the test suite
+Exec in bash "rake test"
 
 * Services (job queues, cache servers, search engines, etc.)
+No
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+After you have a copy on your machine, cd to the root directory, and exec "bundle install" in bash.
