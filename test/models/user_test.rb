@@ -70,6 +70,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "admin should be present" do
+    @user.admin = nil
+    assert_not @user.valid?
+  end
+
+  test "admin should be default fault" do
+    assert @user.admin == false
+  end
+
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
   end

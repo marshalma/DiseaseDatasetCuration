@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
+  validates_inclusion_of :admin, in: [true, false]
   has_secure_password
 
   # Returns the hash digest of the given string.

@@ -1,11 +1,17 @@
 class Disease < ActiveRecord::Base
   require 'yaml'
+  require 'csv'
 
   has_many :submissions
   has_many :users, :through => :submissions
 
+  validates :id, presence: true
+  validates :disease, presence: true
+  validates :accession, presence: true
+  validates :related, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :unrelated, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates_inclusion_of :closed, in: [true, false]
 
-  require 'csv'
 
   def self.to_csv(options = {})
       CSV.generate(options) do |csv|
@@ -15,7 +21,7 @@ class Disease < ActiveRecord::Base
         end
       end
   end
-  
+
 
   def self.parameters_yaml_path
     return "./config/parameters.yml"
